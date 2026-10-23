@@ -33,6 +33,17 @@
       <div class="card" id="players-list"></div>
       <button class="btn-secondary" id="refresh-btn">Actualizar</button>
       <a class="back-link" href="index.html">← Volver al inicio</a>
+      <div class="card announcement-admin-card" style="margin-top: 20px;">
+  <h2>📢 Publicar Aviso a los Invitados</h2>
+  <div class="form-group">
+    <textarea id="announcementText" placeholder="Escribe tu aviso aquí... (ej: ¡A las 22:00h empieza la tarta en el jardín!)" rows="3"></textarea>
+  </div>
+  <div style="display: flex; gap: 10px;">
+    <button onclick="saveAnnouncement()" class="btn btn-primary">Publicar Aviso</button>
+    <button onclick="clearAnnouncement()" class="btn btn-secondary">Eliminar Aviso</button>
+  </div>
+  <p id="announcementStatus" class="status-msg"></p>
+</div>
     </div>
 
   </div>
