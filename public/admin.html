@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — ¿Cuánto sabes de Macarena y Fran?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Login -->
+    <div id="step-login">
+      <div class="ornament"><span></span></div>
+      <h1>Panel de administrador</h1>
+      <p class="subtitle">Introduce la contraseña para continuar</p>
+      <div class="card">
+        <input type="password" id="admin-password" placeholder="Contraseña">
+        <button class="btn-primary" id="login-btn">Entrar</button>
+        <div id="login-msg" class="msg-error" style="display:none"></div>
+      </div>
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </div>
+
+    <!-- Panel -->
+    <div id="step-panel" style="display:none">
+      <div class="ornament"><span></span></div>
+      <h1>Jugadores</h1>
+      <p class="subtitle" id="panel-subtitle">Cargando…</p>
+      <div class="card" id="players-list"></div>
+      <button class="btn-secondary" id="refresh-btn">Actualizar</button>
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

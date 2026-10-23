@@ -1,0 +1,1 @@
+ { "name": "boda-quiz", "version": "1.0.0", "description": "Quiz de las Bodas de Plata de Macarena y Fran", "main": "server.js", "scripts": { "start": "node server.js" }, "engines": { "node": ">=18" }, "dependencies": { "express": "^4.19.2" } }

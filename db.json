@@ -1,0 +1,390 @@
+{
+  "players": {
+    "ianfeif7e": {
+      "displayName": "IANFEIF7E",
+      "completed": true,
+      "canRetry": false,
+      "score": 4,
+      "total": 15,
+      "timeMs": 21410,
+      "answers": [
+        {
+          "pregunta": "¿Por qué no se conocieron los novios 2 años antes?",
+          "opciones": [
+            "Porque Fran estaba de viaje de trabajo",
+            "Porque Macarena se fue de barbacoa y plantó a Fran",
+            "Porque Macarena vivía entonces en otra ciudad",
+            "Porque coincidieron pero no se atrevieron a hablarse"
+          ],
+          "seleccionada": 2,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Cómo se llama el perro de la familia?",
+          "opciones": [
+            "Caramelo",
+            "Toby",
+            "Luna",
+            "Rocky"
+          ],
+          "seleccionada": 2,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde fueron de viaje de novios?",
+          "opciones": [
+            "París",
+            "Roma",
+            "Crucero por el Mediterráneo",
+            "Canarias"
+          ],
+          "seleccionada": 2,
+          "correcta": 2,
+          "acierto": true
+        },
+        {
+          "pregunta": "¿Qué baile han practicado en ocasiones los novios?",
+          "opciones": [
+            "Salsa",
+            "Sevillanas",
+            "Vals",
+            "Bachata"
+          ],
+          "seleccionada": 1,
+          "correcta": 3,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿A qué cantante han ido a ver más veces los novios porque le encanta a la novia?",
+          "opciones": [
+            "Melendi",
+            "Manuel Carrasco",
+            "David Bisbal",
+            "Pablo López"
+          ],
+          "seleccionada": 1,
+          "correcta": 1,
+          "acierto": true
+        },
+        {
+          "pregunta": "¿Cuál es el grupo favorito del novio?",
+          "opciones": [
+            "Revólver",
+            "Extremoduro",
+            "Héroes del Silencio",
+            "Marea"
+          ],
+          "seleccionada": 1,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿De qué equipo de fútbol son hinchas en la familia?",
+          "opciones": [
+            "Sevilla",
+            "Real Madrid",
+            "Betis",
+            "Barcelona"
+          ],
+          "seleccionada": 1,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde vivieron los novios los 3 primeros años de casados?",
+          "opciones": [
+            "En casa de los abuelos",
+            "En los pisos enfrente del Fogón",
+            "En un piso del centro",
+            "En la calle del mercado"
+          ],
+          "seleccionada": 2,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿De qué ha conseguido plaza para trabajar la novia?",
+          "opciones": [
+            "De TCAE",
+            "De administrativa",
+            "De profesora",
+            "De enfermera"
+          ],
+          "seleccionada": 1,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Cuánto tiempo tardaron en casarse desde que empezaron a salir los novios?",
+          "opciones": [
+            "6 meses",
+            "3 años",
+            "20 meses",
+            "5 años"
+          ],
+          "seleccionada": 1,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Qué día es el aniversario de casamiento real de los novios?",
+          "opciones": [
+            "14 de febrero",
+            "27 de octubre",
+            "15 de mayo",
+            "3 de agosto"
+          ],
+          "seleccionada": 0,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿En qué fueron los novios a la iglesia el día de su boda?",
+          "opciones": [
+            "En un coche de época",
+            "Andando desde casa",
+            "En una carroza de flores",
+            "En coche de caballos"
+          ],
+          "seleccionada": 1,
+          "correcta": 3,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿En qué iglesia se casaron los novios?",
+          "opciones": [
+            "San Miguel",
+            "San Pedro",
+            "Santa María",
+            "El Carmen"
+          ],
+          "seleccionada": 1,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde celebraron su boda los novios?",
+          "opciones": [
+            "En una finca a las afueras",
+            "En un hotel del centro",
+            "En el salón del Pagalito",
+            "En el salón parroquial"
+          ],
+          "seleccionada": 2,
+          "correcta": 2,
+          "acierto": true
+        },
+        {
+          "pregunta": "¿Quiénes fueron los padrinos de los novios en su boda?",
+          "opciones": [
+            "Los hermanos de ambos",
+            "Los padres de ambos (4 padrinos)",
+            "Los abuelos maternos",
+            "Solo los padres del novio"
+          ],
+          "seleccionada": 1,
+          "correcta": 1,
+          "acierto": true
+        }
+      ],
+      "attempts": 1,
+      "startedAt": 1792768241920,
+      "finishedAt": 1792768263330
+    },
+    "ghetheh": {
+      "displayName": "GHETHEH",
+      "completed": true,
+      "canRetry": false,
+      "score": 2,
+      "total": 15,
+      "timeMs": 15535,
+      "answers": [
+        {
+          "pregunta": "¿Por qué no se conocieron los novios 2 años antes?",
+          "opciones": [
+            "Porque Fran estaba de viaje de trabajo",
+            "Porque Macarena se fue de barbacoa y plantó a Fran",
+            "Porque Macarena vivía entonces en otra ciudad",
+            "Porque coincidieron pero no se atrevieron a hablarse"
+          ],
+          "seleccionada": 3,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Cómo se llama el perro de la familia?",
+          "opciones": [
+            "Caramelo",
+            "Toby",
+            "Luna",
+            "Rocky"
+          ],
+          "seleccionada": 3,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde fueron de viaje de novios?",
+          "opciones": [
+            "París",
+            "Roma",
+            "Crucero por el Mediterráneo",
+            "Canarias"
+          ],
+          "seleccionada": 3,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Qué baile han practicado en ocasiones los novios?",
+          "opciones": [
+            "Salsa",
+            "Sevillanas",
+            "Vals",
+            "Bachata"
+          ],
+          "seleccionada": 3,
+          "correcta": 3,
+          "acierto": true
+        },
+        {
+          "pregunta": "¿A qué cantante han ido a ver más veces los novios porque le encanta a la novia?",
+          "opciones": [
+            "Melendi",
+            "Manuel Carrasco",
+            "David Bisbal",
+            "Pablo López"
+          ],
+          "seleccionada": 3,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Cuál es el grupo favorito del novio?",
+          "opciones": [
+            "Revólver",
+            "Extremoduro",
+            "Héroes del Silencio",
+            "Marea"
+          ],
+          "seleccionada": 3,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿De qué equipo de fútbol son hinchas en la familia?",
+          "opciones": [
+            "Sevilla",
+            "Real Madrid",
+            "Betis",
+            "Barcelona"
+          ],
+          "seleccionada": 3,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde vivieron los novios los 3 primeros años de casados?",
+          "opciones": [
+            "En casa de los abuelos",
+            "En los pisos enfrente del Fogón",
+            "En un piso del centro",
+            "En la calle del mercado"
+          ],
+          "seleccionada": 3,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿De qué ha conseguido plaza para trabajar la novia?",
+          "opciones": [
+            "De TCAE",
+            "De administrativa",
+            "De profesora",
+            "De enfermera"
+          ],
+          "seleccionada": 3,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Cuánto tiempo tardaron en casarse desde que empezaron a salir los novios?",
+          "opciones": [
+            "6 meses",
+            "3 años",
+            "20 meses",
+            "5 años"
+          ],
+          "seleccionada": 3,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Qué día es el aniversario de casamiento real de los novios?",
+          "opciones": [
+            "14 de febrero",
+            "27 de octubre",
+            "15 de mayo",
+            "3 de agosto"
+          ],
+          "seleccionada": 3,
+          "correcta": 1,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿En qué fueron los novios a la iglesia el día de su boda?",
+          "opciones": [
+            "En un coche de época",
+            "Andando desde casa",
+            "En una carroza de flores",
+            "En coche de caballos"
+          ],
+          "seleccionada": 3,
+          "correcta": 3,
+          "acierto": true
+        },
+        {
+          "pregunta": "¿En qué iglesia se casaron los novios?",
+          "opciones": [
+            "San Miguel",
+            "San Pedro",
+            "Santa María",
+            "El Carmen"
+          ],
+          "seleccionada": 3,
+          "correcta": 0,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Dónde celebraron su boda los novios?",
+          "opciones": [
+            "En una finca a las afueras",
+            "En un hotel del centro",
+            "En el salón del Pagalito",
+            "En el salón parroquial"
+          ],
+          "seleccionada": 3,
+          "correcta": 2,
+          "acierto": false
+        },
+        {
+          "pregunta": "¿Quiénes fueron los padrinos de los novios en su boda?",
+          "opciones": [
+            "Los hermanos de ambos",
+            "Los padres de ambos (4 padrinos)",
+            "Los abuelos maternos",
+            "Solo los padres del novio"
+          ],
+          "seleccionada": 3,
+          "correcta": 1,
+          "acierto": false
+        }
+      ],
+      "attempts": 1,
+      "startedAt": 1792768293866,
+      "finishedAt": 1792768309401
+    }
+  }
+}

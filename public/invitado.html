@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jugar — ¿Cuánto sabes de Macarena y Fran?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Paso 1: nombre -->
+    <div id="step-name">
+      <div class="ornament"><span></span></div>
+      <h1>¿Cómo te llamas?</h1>
+      <p class="subtitle">Escribe tu nombre para empezar a jugar</p>
+      <div class="card">
+        <input type="text" id="name-input" placeholder="Tu nombre" maxlength="40">
+        <button class="btn-primary" id="start-btn">Empezar el quiz</button>
+        <div id="name-msg" class="msg-error" style="display:none"></div>
+      </div>
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </div>
+
+    <!-- Paso 2: quiz -->
+    <div id="step-quiz" style="display:none">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="q-count" id="q-count"></div>
+      <h2 id="q-text"></h2>
+      <div id="options" style="margin-top:16px"></div>
+      <button class="btn-primary" id="next-btn" disabled>Siguiente</button>
+    </div>
+
+    <!-- Paso 3: resultado -->
+    <div id="step-result" style="display:none">
+      <div class="ornament"><span></span></div>
+      <h1>¡Enhorabuena!</h1>
+      <p class="result-score" id="result-score"></p>
+      <p class="result-time" id="result-time"></p>
+      <button class="btn-primary" id="view-ranking-btn">Ver el ranking</button>
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </div>
+
+    <!-- Paso 4: ranking -->
+    <div id="step-ranking" style="display:none">
+      <div class="ornament"><span></span></div>
+      <h1>Ranking</h1>
+      <p class="subtitle">Clasificación por aciertos y tiempo</p>
+      <div class="card">
+        <table>
+          <thead><tr><th>#</th><th>Nombre</th><th>Aciertos</th><th>Tiempo</th></tr></thead>
+          <tbody id="ranking-body"></tbody>
+        </table>
+      </div>
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

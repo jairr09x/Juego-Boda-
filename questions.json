@@ -1,0 +1,31 @@
+[
+  { "pregunta": "¿Por qué no se conocieron los novios 2 años antes?", "opciones": ["Porque Fran estaba de viaje de trabajo", "Porque Macarena se fue de barbacoa y plantó a Fran", "Porque Macarena vivía entonces en otra ciudad", "Porque coincidieron pero no se atrevieron a hablarse"], "correcta": 1 },
+
+  { "pregunta": "¿Cómo se llama el perro de la familia?", "opciones": ["Caramelo", "Toby", "Luna", "Rocky"], "correcta": 0 },
+
+  { "pregunta": "¿Dónde fueron de viaje de novios?", "opciones": ["París", "Roma", "Crucero por el Mediterráneo", "Canarias"], "correcta": 2 },
+
+  { "pregunta": "¿Qué baile han practicado en ocasiones los novios?", "opciones": ["Salsa", "Sevillanas", "Vals", "Bachata"], "correcta": 3 },
+
+  { "pregunta": "¿A qué cantante han ido a ver más veces los novios porque le encanta a la novia?", "opciones": ["Melendi", "Manuel Carrasco", "David Bisbal", "Pablo López"], "correcta": 1 },
+
+  { "pregunta": "¿Cuál es el grupo favorito del novio?", "opciones": ["Revólver", "Extremoduro", "Héroes del Silencio", "Marea"], "correcta": 0 },
+
+  { "pregunta": "¿De qué equipo de fútbol son hinchas en la familia?", "opciones": ["Sevilla", "Real Madrid", "Betis", "Barcelona"], "correcta": 2 },
+
+  { "pregunta": "¿Dónde vivieron los novios los 3 primeros años de casados?", "opciones": ["En casa de los abuelos", "En los pisos enfrente del Fogón", "En un piso del centro", "En la calle del mercado"], "correcta": 1 },
+
+  { "pregunta": "¿De qué ha conseguido plaza para trabajar la novia?", "opciones": ["De TCAE", "De administrativa", "De profesora", "De enfermera"], "correcta": 0 },
+
+  { "pregunta": "¿Cuánto tiempo tardaron en casarse desde que empezaron a salir los novios?", "opciones": ["6 meses", "3 años", "20 meses", "5 años"], "correcta": 2 },
+
+  { "pregunta": "¿Qué día es el aniversario de casamiento real de los novios?", "opciones": ["14 de febrero", "27 de octubre", "15 de mayo", "3 de agosto"], "correcta": 1 },
+
+  { "pregunta": "¿En qué fueron los novios a la iglesia el día de su boda?", "opciones": ["En un coche de época", "Andando desde casa", "En una carroza de flores", "En coche de caballos"], "correcta": 3 },
+
+  { "pregunta": "¿En qué iglesia se casaron los novios?", "opciones": ["San Miguel", "San Pedro", "Santa María", "El Carmen"], "correcta": 0 },
+
+  { "pregunta": "¿Dónde celebraron su boda los novios?", "opciones": ["En una finca a las afueras", "En un hotel del centro", "En el salón del Pagalito", "En el salón parroquial"], "correcta": 2 },
+
+  { "pregunta": "¿Quiénes fueron los padrinos de los novios en su boda?", "opciones": ["Los hermanos de ambos", "Los padres de ambos (4 padrinos)", "Los abuelos maternos", "Solo los padres del novio"], "correcta": 1 }
+]
