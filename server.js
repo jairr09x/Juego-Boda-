@@ -224,3 +224,20 @@ app.listen(PORT, () => {
   console.log(`✅ ${EVENT_NAME}`);
   console.log(`   Servidor escuchando en http://localhost:${PORT}`);
 });
+
+let currentAnnouncement = ""; // Guarda el aviso actual
+
+// Obtener aviso actual (para invitados)
+app.get('/api/announcement', (req, res) => {
+  res.json({ announcement: currentAnnouncement });
+});
+
+// Guardar o borrar aviso (para admin)
+app.post('/api/announcement', (req, res) => {
+  const { password, message } = req.body;
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Contraseña incorrecta" });
+  }
+  currentAnnouncement = message || "";
+  res.json({ success: true, announcement: currentAnnouncement });
+});
