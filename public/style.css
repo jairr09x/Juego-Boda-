@@ -282,3 +282,15 @@ tr.me td { background: rgba(176,141,79,0.1); font-weight: 700; }
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.announcement-banner {
+  background-color: #fcf8e3;
+  border: 2px solid #b08d4f;
+  color: #6d2a3c;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  animation: fadeIn 0.5s ease-in-out;
+}
