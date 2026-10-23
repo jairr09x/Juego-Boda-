@@ -270,3 +270,44 @@ if (el("step-login")) {
     });
   }
 }
+// Para el Panel de Admin
+async function saveAnnouncement() {
+  const message = document.getElementById('announcementText').value;
+  const res = await fetch('/api/announcement', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: adminPassword, message })
+  });
+  if (res.ok) {
+    document.getElementById('announcementStatus').innerText = "¡Aviso publicado correctamente!";
+  }
+}
+
+async function clearAnnouncement() {
+  document.getElementById('announcementText').value = "";
+  saveAnnouncement();
+}
+
+// Para los Invitados (se ejecuta periódicamente)
+async function checkAnnouncements() {
+  try {
+    const res = await fetch('/api/announcement');
+    const data = await res.json();
+    const banner = document.getElementById('announcementBanner');
+    
+    if (banner) {
+      if (data.announcement && data.announcement.trim() !== "") {
+        banner.innerHTML = `<span>📢 <strong>AVISO:</strong> ${data.announcement}</span>`;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+  } catch (err) {
+    console.error("Error comprobando avisos:", err);
+  }
+}
+
+// Comprobar avisos automáticamente cada 5 segundos
+setInterval(checkAnnouncements, 5000);
+checkAnnouncements();
