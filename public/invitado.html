@@ -44,6 +44,21 @@
       <p class="result-score" id="result-score"></p>
       <p class="result-time" id="result-time"></p>
       <button class="btn-primary" id="view-ranking-btn">Ver el ranking</button>
+
+      <!-- Sección Libro de Firmas / Dedicatoria -->
+      <div id="guest-message-section" class="card" style="margin-top: 24px; display: none;">
+        <h2>✍️ Deja un mensaje a los novios</h2>
+        <p class="subtitle">Escribe tu felicitación o dedicatoria para Macarena y Fran</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+          <input type="text" id="msg-sender-name" placeholder="Tu nombre" maxlength="40" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit;">
+          <textarea id="msg-text" placeholder="Escribe aquí tu mensaje..." rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; resize: vertical;"></textarea>
+          <button class="btn-primary" onclick="sendGuestMessage()">Enviar mensaje</button>
+        </div>
+        
+        <div id="msg-status" style="margin-top: 10px; display: none; font-size: 0.9rem; text-align: center;"></div>
+      </div>
+
       <a class="back-link" href="index.html">← Volver al inicio</a>
     </div>
 
