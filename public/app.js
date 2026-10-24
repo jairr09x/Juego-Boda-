@@ -4,6 +4,7 @@
 
 // Variable global para guardar la contraseña en el admin
 let adminPassword = null;
+let currentMessagesEnabled = true;
 
 function fmtTime(ms) {
   const totalSec = Math.round(ms / 1000);
@@ -69,7 +70,137 @@ async function checkAnnouncements() {
 
 // Comprobar avisos periódicamente
 setInterval(checkAnnouncements, 5000);
-document.addEventListener("DOMContentLoaded", checkAnnouncements);
+document.addEventListener("DOMContentLoaded", () => {
+  checkAnnouncements();
+  checkMessageSectionStatus();
+});
+
+// ------------------------------------------------------------
+//  LIBRO DE FIRMAS / DEDICATORIAS (Lógica General)
+// ------------------------------------------------------------
+
+// Comprobar si la sección de dedicatorias está visible para el invitado
+async function checkMessageSectionStatus() {
+  const section = el('guest-message-section');
+  if (!section) return;
+  try {
+    const res = await fetch('/api/guest/messages-status');
+    const data = await res.json();
+    section.style.display = data.enabled ? 'block' : 'none';
+  } catch (err) {
+    console.error("Error obteniendo estado del libro de firmas:", err);
+  }
+}
+
+// Enviar un mensaje por parte del invitado
+async function sendGuestMessage() {
+  const nameInput = el('msg-sender-name');
+  const msgInput = el('msg-text');
+  const statusDiv = el('msg-status');
+
+  const name = nameInput ? nameInput.value : '';
+  const message = msgInput ? msgInput.value : '';
+
+  if (!name.trim() || !message.trim()) {
+    if (statusDiv) {
+      statusDiv.textContent = "Por favor, escribe tu nombre y un mensaje.";
+      statusDiv.style.color = "#a4392c";
+      statusDiv.style.display = "block";
+    }
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/guest/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, message })
+    });
+
+    if (res.ok) {
+      if (statusDiv) {
+        statusDiv.textContent = "¡Muchas gracias! Tu mensaje ha sido enviado a los novios ❤️";
+        statusDiv.style.color = "#2e7d32";
+        statusDiv.style.display = "block";
+      }
+      if (msgInput) msgInput.value = "";
+    } else {
+      const errData = await res.json();
+      throw new Error(errData.error || "Error al enviar");
+    }
+  } catch (err) {
+    if (statusDiv) {
+      statusDiv.textContent = err.message || "Error al enviar el mensaje.";
+      statusDiv.style.color = "#a4392c";
+      statusDiv.style.display = "block";
+    }
+  }
+}
+
+// Activar/Ocultar el libro de firmas desde Admin
+async function toggleMessageSection() {
+  const newState = !currentMessagesEnabled;
+  try {
+    const res = await fetch('/api/admin/toggle-messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: adminPassword, enabled: newState })
+    });
+    const data = await res.json();
+    if (data.success) {
+      currentMessagesEnabled = data.enabled;
+      updateAdminToggleUI();
+    }
+  } catch (err) {
+    alert("Error al cambiar el estado del libro de firmas.");
+  }
+}
+
+function updateAdminToggleUI() {
+  const btn = el('toggle-messages-btn');
+  if (btn) {
+    btn.textContent = currentMessagesEnabled ? "🟢 MOSTRADO (Clic para ocultar)" : "🔴 OCULTO (Clic para mostrar)";
+    btn.style.background = currentMessagesEnabled ? "#2e7d32" : "#a4392c";
+  }
+}
+
+// Cargar mensajes en el panel de Admin
+async function loadGuestMessages() {
+  const container = el('guest-messages-list');
+  if (!container || !adminPassword) return;
+
+  try {
+    const res = await fetch('/api/admin/messages', {
+      headers: { 'x-admin-password': adminPassword }
+    });
+    const data = await res.json();
+
+    container.innerHTML = "";
+    if (!data.messages || data.messages.length === 0) {
+      container.innerHTML = "<p style='color:#9a978d'>Todavía no hay dedicatorias.</p>";
+      return;
+    }
+
+    data.messages.slice().reverse().forEach(m => {
+      const card = document.createElement('div');
+      card.style.background = '#fffdf9';
+      card.style.border = '1px solid #e0d8c3';
+      card.style.borderRadius = '8px';
+      card.style.padding = '12px';
+      card.style.marginBottom = '12px';
+      card.innerHTML = `
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;">
+          <strong style="color:#2c281e;">👤 ${m.name}</strong>
+          <small style="color:#8c8573;">${m.date}</small>
+        </div>
+        <p style="margin:0; color:#4a473d; white-space:pre-line; font-size:0.95rem;">${m.message}</p>
+      `;
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Error cargando mensajes:", err);
+  }
+}
 
 // ------------------------------------------------------------
 //  INVITADO (invitado.html)
@@ -232,6 +363,16 @@ if (el("step-login")) {
       hide("step-login");
       show("step-panel");
       loadPlayers();
+      
+      // Cargar libro de firmas y actualizar estado inicial en admin
+      fetch('/api/guest/messages-status')
+        .then(r => r.json())
+        .then(d => {
+          currentMessagesEnabled = d.enabled;
+          updateAdminToggleUI();
+        }).catch(() => {});
+      loadGuestMessages();
+
     } catch {
       el("login-msg").textContent = "Contraseña incorrecta.";
       el("login-msg").style.display = "block";
