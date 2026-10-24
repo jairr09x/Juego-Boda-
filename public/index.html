@@ -15,6 +15,9 @@
     <h1 id="event-title">¿Cuánto sabes de<br>Macarena y Fran?</h1>
     <p class="subtitle">Bodas de Plata · 25 años juntos</p>
 
+    <!-- BANNER DE AVISO (Aparecerá aquí cuando el admin publique algo) -->
+    <div id="announcementBanner" class="announcement-banner" style="display: none;"></div>
+
     <a class="menu-choice" href="invitado.html">
       <span class="label">Jugar como invitado</span>
       <span class="desc">Responde el quiz y descubre tu puesto en el ranking.</span>
@@ -26,6 +29,7 @@
     </a>
   </div>
 
+  <script src="app.js"></script>
   <script>
     fetch('/api/event').then(r => r.json()).then(d => {
       document.title = d.name;
