@@ -15,6 +15,11 @@ const EVENT_NAME = "¿Cuánto sabes de Macarena y Fran?";
 const QUESTIONS_PATH = path.join(__dirname, "questions.json");
 const DB_PATH = path.join(__dirname, "db.json");
 
+// Variables globales en memoria para Avisos y Libro de Firmas
+let currentAnnouncement = "";
+let messagesEnabled = true; // Por defecto el libro de firmas está visible
+let guestMessages = [];     // Guarda las dedicatorias enviadas
+
 // ------------------------------------------------------------
 //  PERSISTENCIA SENCILLA EN JSON
 // ------------------------------------------------------------
@@ -38,19 +43,86 @@ function normalizeName(name) {
 }
 
 // ------------------------------------------------------------
-//  APP
+//  APP & MIDDLEWARES
 // ------------------------------------------------------------
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Info pública del evento (para el título de la pantalla de inicio)
+// Info pública del evento
 app.get("/api/event", (req, res) => {
   res.json({ name: EVENT_NAME, totalQuestions: loadQuestions().length });
 });
 
 // ------------------------------------------------------------
-//  RUTAS DE INVITADO
+//  SISTEMA DE AVISOS
+// ------------------------------------------------------------
+
+// Obtener aviso actual (para invitados)
+app.get('/api/announcement', (req, res) => {
+  res.json({ announcement: currentAnnouncement });
+});
+
+// Guardar o borrar aviso (para admin)
+app.post('/api/announcement', (req, res) => {
+  const { password, message } = req.body;
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Contraseña incorrecta" });
+  }
+  currentAnnouncement = message || "";
+  res.json({ success: true, announcement: currentAnnouncement });
+});
+
+// ------------------------------------------------------------
+//  LIBRO DE FIRMAS / DEDICATORIAS
+// ------------------------------------------------------------
+
+// Consultar si el libro de firmas está activo para los invitados
+app.get('/api/guest/messages-status', (req, res) => {
+  res.json({ enabled: messagesEnabled });
+});
+
+// Activar u ocultar el libro de firmas desde el panel de admin
+app.post('/api/admin/toggle-messages', (req, res) => {
+  const { password, enabled } = req.body;
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Contraseña incorrecta" });
+  }
+  messagesEnabled = Boolean(enabled);
+  res.json({ success: true, enabled: messagesEnabled });
+});
+
+// Enviar un mensaje / dedicatoria (invitado)
+app.post('/api/guest/message', (req, res) => {
+  if (!messagesEnabled) {
+    return res.status(403).json({ error: "El libro de firmas está desactivado actualmente." });
+  }
+  const { name, message } = req.body;
+  if (!name || !message || !name.trim() || !message.trim()) {
+    return res.status(400).json({ error: "El nombre y el mensaje son obligatorios." });
+  }
+
+  guestMessages.push({
+    id: Date.now(),
+    name: name.trim(),
+    message: message.trim(),
+    date: new Date().toLocaleString("es-ES")
+  });
+
+  res.json({ success: true });
+});
+
+// Ver todos los mensajes desde el panel de admin
+app.get('/api/admin/messages', (req, res) => {
+  const password = req.header("x-admin-password");
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Contraseña incorrecta." });
+  }
+  res.json({ messages: guestMessages });
+});
+
+// ------------------------------------------------------------
+//  RUTAS DE INVITADO (QUIZ)
 // ------------------------------------------------------------
 
 // Empezar (o reintentar) el quiz
@@ -92,7 +164,7 @@ app.post("/api/guest/start", (req, res) => {
   };
   saveDB(db);
 
-  // Enviamos las preguntas SIN el índice de la respuesta correcta
+  // Enviamos las preguntas SIN la respuesta correcta
   const publicQuestions = questions.map((q, i) => ({
     index: i,
     pregunta: q.pregunta,
@@ -147,7 +219,7 @@ app.post("/api/guest/submit", (req, res) => {
   res.json({ score, total: questions.length, timeMs });
 });
 
-// Ranking público (top 50) + posición del jugador que pregunta
+// Ranking público (top 50) + posición del jugador
 app.get("/api/guest/leaderboard", (req, res) => {
   const db = loadDB();
   const meId = req.query.playerId || null;
@@ -182,7 +254,7 @@ function requireAdmin(req, res, next) {
 }
 
 // ------------------------------------------------------------
-//  RUTAS DE ADMIN
+//  RUTAS DE ADMIN (JUGADORES)
 // ------------------------------------------------------------
 
 app.post("/api/admin/login", (req, res) => {
@@ -201,7 +273,7 @@ app.get("/api/admin/players", requireAdmin, (req, res) => {
   res.json({ players });
 });
 
-// Permitir que un jugador concreto vuelva a jugar
+// Permitir que un jugador vuelva a jugar
 app.post("/api/admin/allow-retry/:key", requireAdmin, (req, res) => {
   const db = loadDB();
   const player = db.players[req.params.key];
@@ -211,7 +283,7 @@ app.post("/api/admin/allow-retry/:key", requireAdmin, (req, res) => {
   res.json({ ok: true });
 });
 
-// Eliminar un jugador (por si alguien se equivocó escribiendo su nombre)
+// Eliminar a un jugador
 app.delete("/api/admin/players/:key", requireAdmin, (req, res) => {
   const db = loadDB();
   delete db.players[req.params.key];
@@ -220,24 +292,9 @@ app.delete("/api/admin/players/:key", requireAdmin, (req, res) => {
 });
 
 // ------------------------------------------------------------
+//  INICIO DEL SERVIDOR
+// ------------------------------------------------------------
 app.listen(PORT, () => {
   console.log(`✅ ${EVENT_NAME}`);
-  console.log(`   Servidor escuchando en http://localhost:${PORT}`);
-});
-
-let currentAnnouncement = ""; // Guarda el aviso actual
-
-// Obtener aviso actual (para invitados)
-app.get('/api/announcement', (req, res) => {
-  res.json({ announcement: currentAnnouncement });
-});
-
-// Guardar o borrar aviso (para admin)
-app.post('/api/announcement', (req, res) => {
-  const { password, message } = req.body;
-  if (password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ error: "Contraseña incorrecta" });
-  }
-  currentAnnouncement = message || "";
-  res.json({ success: true, announcement: currentAnnouncement });
+  console.log(`   Servidor escuchando en puerto ${PORT}`);
 });
