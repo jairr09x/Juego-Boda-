@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //  LIBRO DE FIRMAS / DEDICATORIAS (Lógica General)
 // ------------------------------------------------------------
 
-// Comprobar si la sección de dedicatorias está visible para el invitado
 async function checkMessageSectionStatus() {
   const section = el('guest-message-section');
   if (!section) return;
@@ -92,7 +91,6 @@ async function checkMessageSectionStatus() {
   }
 }
 
-// Enviar un mensaje por parte del invitado
 async function sendGuestMessage() {
   const nameInput = el('msg-sender-name');
   const msgInput = el('msg-text');
@@ -137,7 +135,6 @@ async function sendGuestMessage() {
   }
 }
 
-// Activar/Ocultar el libro de firmas desde Admin
 async function toggleMessageSection() {
   const newState = !currentMessagesEnabled;
   try {
@@ -164,7 +161,6 @@ function updateAdminToggleUI() {
   }
 }
 
-// Cargar mensajes en el panel de Admin
 async function loadGuestMessages() {
   const container = el('guest-messages-list');
   if (!container || !adminPassword) return;
@@ -359,12 +355,18 @@ if (el("step-login")) {
       const data = await res.json();
       if (!data.ok) throw new Error();
 
-      adminPassword = password; // Guardado en variable global
+      adminPassword = password;
       hide("step-login");
       show("step-panel");
       loadPlayers();
       
-      // Cargar libro de firmas y actualizar estado inicial en admin
+      // Conectar automáticamente el botón de activar/ocultar
+      const toggleBtn = el('toggle-messages-btn');
+      if (toggleBtn) {
+        toggleBtn.onclick = toggleMessageSection;
+      }
+
+      // Cargar estado inicial y mensajes
       fetch('/api/guest/messages-status')
         .then(r => r.json())
         .then(d => {
