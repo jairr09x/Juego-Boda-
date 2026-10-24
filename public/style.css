@@ -294,3 +294,33 @@ tr.me td { background: rgba(176,141,79,0.1); font-weight: 700; }
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   animation: fadeIn 0.5s ease-in-out;
 }
+/* ============================================================
+   EFECTOS Y ANIMACIONES PROFESIONALES (FADE-IN & SLIDE)
+   ============================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transición suave para tarjetas y secciones principales */
+.wrap > div, .card, .menu-choice {
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Retardo escalonado para que los botones del menú aparezcan uno tras otro */
+.menu-choice:nth-child(1) { animation-delay: 0.05s; }
+.menu-choice:nth-child(2) { animation-delay: 0.12s; }
+.menu-choice:nth-child(3) { animation-delay: 0.19s; }
+.menu-choice:nth-child(4) { animation-delay: 0.26s; }
+
+/* Transición suave para las preguntas del quiz */
+.q-animate {
+  animation: fadeInUp 0.35s ease-out forwards;
+}
