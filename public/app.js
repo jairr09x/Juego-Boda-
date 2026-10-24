@@ -2,6 +2,9 @@
 //  Lógica del frontend — invitado.html y admin.html
 // ============================================================
 
+// Variable global para guardar la contraseña en el admin
+let adminPassword = null;
+
 function fmtTime(ms) {
   const totalSec = Math.round(ms / 1000);
   const m = Math.floor(totalSec / 60);
@@ -10,8 +13,63 @@ function fmtTime(ms) {
 }
 
 function el(id) { return document.getElementById(id); }
-function show(id) { el(id).style.display = ""; }
-function hide(id) { el(id).style.display = "none"; }
+function show(id) { if (el(id)) el(id).style.display = ""; }
+function hide(id) { if (el(id)) el(id).style.display = "none"; }
+
+// ------------------------------------------------------------
+//  SISTEMA DE AVISOS (Funciona en todas las pantallas)
+// ------------------------------------------------------------
+async function saveAnnouncement() {
+  const textInput = el('announcementText');
+  const statusMsg = el('announcementStatus');
+  if (!textInput) return;
+
+  const message = textInput.value;
+  try {
+    const res = await fetch('/api/announcement', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: adminPassword, message })
+    });
+
+    if (res.ok) {
+      if (statusMsg) statusMsg.innerText = message ? "¡Aviso publicado correctamente!" : "Aviso eliminado.";
+      checkAnnouncements();
+    } else {
+      if (statusMsg) statusMsg.innerText = "Error: contraseña no válida o error de servidor.";
+    }
+  } catch (err) {
+    if (statusMsg) statusMsg.innerText = "Error de conexión al guardar aviso.";
+  }
+}
+
+async function clearAnnouncement() {
+  if (el('announcementText')) el('announcementText').value = "";
+  saveAnnouncement();
+}
+
+async function checkAnnouncements() {
+  try {
+    const res = await fetch('/api/announcement');
+    const data = await res.json();
+    const banner = el('announcementBanner');
+    
+    if (banner) {
+      if (data.announcement && data.announcement.trim() !== "") {
+        banner.innerHTML = `<span>📢 <strong>AVISO:</strong> ${data.announcement}</span>`;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+  } catch (err) {
+    console.error("Error comprobando avisos:", err);
+  }
+}
+
+// Comprobar avisos periódicamente
+setInterval(checkAnnouncements, 5000);
+document.addEventListener("DOMContentLoaded", checkAnnouncements);
 
 // ------------------------------------------------------------
 //  INVITADO (invitado.html)
@@ -152,8 +210,6 @@ if (el("step-name")) {
 //  ADMIN (admin.html)
 // ------------------------------------------------------------
 if (el("step-login")) {
-  let adminPassword = null;
-
   el("login-btn").addEventListener("click", login);
   el("admin-password").addEventListener("keydown", (e) => {
     if (e.key === "Enter") login();
@@ -172,7 +228,7 @@ if (el("step-login")) {
       const data = await res.json();
       if (!data.ok) throw new Error();
 
-      adminPassword = password;
+      adminPassword = password; // Guardado en variable global
       hide("step-login");
       show("step-panel");
       loadPlayers();
@@ -270,44 +326,3 @@ if (el("step-login")) {
     });
   }
 }
-// Para el Panel de Admin
-async function saveAnnouncement() {
-  const message = document.getElementById('announcementText').value;
-  const res = await fetch('/api/announcement', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password: adminPassword, message })
-  });
-  if (res.ok) {
-    document.getElementById('announcementStatus').innerText = "¡Aviso publicado correctamente!";
-  }
-}
-
-async function clearAnnouncement() {
-  document.getElementById('announcementText').value = "";
-  saveAnnouncement();
-}
-
-// Para los Invitados (se ejecuta periódicamente)
-async function checkAnnouncements() {
-  try {
-    const res = await fetch('/api/announcement');
-    const data = await res.json();
-    const banner = document.getElementById('announcementBanner');
-    
-    if (banner) {
-      if (data.announcement && data.announcement.trim() !== "") {
-        banner.innerHTML = `<span>📢 <strong>AVISO:</strong> ${data.announcement}</span>`;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
-    }
-  } catch (err) {
-    console.error("Error comprobando avisos:", err);
-  }
-}
-
-// Comprobar avisos automáticamente cada 5 segundos
-setInterval(checkAnnouncements, 5000);
-checkAnnouncements();
