@@ -23,13 +23,35 @@
       <span class="desc">Responde el quiz y descubre tu puesto en el ranking.</span>
     </a>
 
-    <!-- NUEVO: Botón para subir fotos y vídeos sin registro -->
+    <!-- Botón para subir fotos y vídeos sin registro -->
     <a class="menu-choice" href="https://www.dropbox.com/request/fcgmx3kejmvmmtqm6a7c" target="_blank" style="border-color: #b08d4f; background: #fffdf9;">
       <span class="label" style="color: #b08d4f;">📸 Subir fotos y vídeos</span>
       <span class="desc">Haz clic y sube tus recuerdos directamente desde tu galería (sin registros).</span>
     </a>
 
-    <a class="menu-choice" href="admin.html">
+    <!-- SECCIÓN LIBRO DE FIRMAS EN EL MENÚ INICIAL -->
+    <div id="guest-message-section" class="card" style="margin-top: 20px; display: none;">
+      <h2>✍️ Deja un mensaje a los novios</h2>
+      <p class="subtitle">Escribe tu felicitación o dedicatoria para Macarena y Fran</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+        <input type="text" id="msg-sender-name" placeholder="Tu nombre" maxlength="40" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit;">
+        <textarea id="msg-text" placeholder="Escribe aquí tu mensaje..." rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; resize: vertical;"></textarea>
+        <button class="btn-primary" onclick="sendGuestMessage()">Enviar mensaje</button>
+      </div>
+      
+      <div id="msg-status" style="margin-top: 10px; display: none; font-size: 0.9rem; text-align: center;"></div>
+    </div>
+
+    <!-- APARTADO DE CRÉDITOS -->
+    <div class="card" style="margin-top: 20px; background: #fffdf9; border: 1px solid #e0d8c3; text-align: center;">
+      <h3 style="margin-top: 0; color: #2c281e; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;">✨ Créditos</h3>
+      <p style="margin: 8px 0 0 0; color: #4a473d; font-size: 0.95rem; line-height: 1.5;">
+        Este juego ha sido creado por el Padrino y su gran extenso grupo de programadores profesionales (Geminis), muchas gracias por jugarlo y espero que te haya gustado ;)
+      </p>
+    </div>
+
+    <a class="menu-choice" href="admin.html" style="margin-top: 20px;">
       <span class="label">Acceso administrador</span>
       <span class="desc">Gestiona jugadores y respuestas (requiere contraseña).</span>
     </a>
