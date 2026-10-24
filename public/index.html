@@ -34,6 +34,9 @@
     fetch('/api/event').then(r => r.json()).then(d => {
       document.title = d.name;
     }).catch(() => {});
+    if (typeof checkAnnouncements === 'function') {
+      checkAnnouncements();
+    }
   </script>
 </body>
 </html>
