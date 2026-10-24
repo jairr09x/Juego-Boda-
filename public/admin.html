@@ -32,18 +32,38 @@
       <p class="subtitle" id="panel-subtitle">Cargando…</p>
       <div class="card" id="players-list"></div>
       <button class="btn-secondary" id="refresh-btn">Actualizar</button>
-      <a class="back-link" href="index.html">← Volver al inicio</a>
+
+      <!-- PUBLICAR AVISOS EN DIRECTO -->
       <div class="card announcement-admin-card" style="margin-top: 20px;">
-  <h2>📢 Publicar Aviso a los Invitados</h2>
-  <div class="form-group">
-    <textarea id="announcementText" placeholder="Escribe tu aviso aquí... (ej: ¡A las 22:00h empieza la tarta en el jardín!)" rows="3"></textarea>
-  </div>
-  <div style="display: flex; gap: 10px;">
-    <button onclick="saveAnnouncement()" class="btn btn-primary">Publicar Aviso</button>
-    <button onclick="clearAnnouncement()" class="btn btn-secondary">Eliminar Aviso</button>
-  </div>
-  <p id="announcementStatus" class="status-msg"></p>
-</div>
+        <h2>📢 Publicar Aviso a los Invitados</h2>
+        <div class="form-group">
+          <textarea id="announcementText" placeholder="Escribe tu aviso aquí... (ej: ¡A las 22:00h empieza la tarta en el jardín!)" rows="3"></textarea>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button onclick="saveAnnouncement()" class="btn btn-primary">Publicar Aviso</button>
+          <button onclick="clearAnnouncement()" class="btn btn-secondary">Eliminar Aviso</button>
+        </div>
+        <p id="announcementStatus" class="status-msg"></p>
+      </div>
+
+      <!-- GESTIÓN DEL LIBRO DE FIRMAS / DEDICATORIAS -->
+      <div class="card" style="margin-top: 20px;">
+        <h2>💌 Libro de Firmas y Dedicatorias</h2>
+        
+        <!-- Interruptor para Activar / Ocultar a los invitados -->
+        <div style="margin-bottom: 16px; padding: 12px; background: #f9f8f3; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+          <span style="font-size: 0.95rem; color: #4a473d;">Formulario para invitados:</span>
+          <button id="toggle-messages-btn" onclick="toggleMessageSection()" class="btn-primary" style="padding: 6px 14px; width: auto; margin: 0;">Cargando...</button>
+        </div>
+
+        <button onclick="loadGuestMessages()" class="btn-secondary" style="width: 100%; margin-bottom: 12px;">🔄 Actualizar lista de mensajes</button>
+        
+        <div id="guest-messages-list" style="margin-top: 12px;">
+          <!-- Aquí se cargarán las dedicatorias enviadas -->
+        </div>
+      </div>
+
+      <a class="back-link" href="index.html" style="margin-top: 24px;">← Volver al inicio</a>
     </div>
 
   </div>
